@@ -38,7 +38,7 @@ app.ticker.add((delta) => {
 });
 
 function randomSpawnPoint() {
-  let edge = 0; //math.floor(math.random() * 4); //random int between 0-3
+  let edge = math.floor(math.random() * 4); //random int between 0-3
   let spawnPoint = new Victor(0,0);
   switch (edge) {
     case 0: //top
@@ -49,7 +49,7 @@ function randomSpawnPoint() {
     spawnPoint.y = canvasSize * Math.random();
     break;
     case 2: //bottom
-    spawnPoint.x = canvasSize* Math.random();
+    spawnPoint.x = canvasSize * Math.random();
     spawnPoint.y = canvasSize;
     break;
     default: //left

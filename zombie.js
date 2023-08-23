@@ -7,7 +7,7 @@ export default class Zombie {
     this.player = player;
 
     const Radius = 16;
-    this.Speed = 2;
+    this.speed = 2;
     this.zombie = new PIXI.Graphics();
     let r = this.randomSpawnPoint();
     this.zombie.position.set(r.x,r.y);
@@ -26,7 +26,7 @@ export default class Zombie {
       return;
     }
     let d = s.subtract(e);
-    let v = d.normalize().multiplyScalar(this.Speed);
+    let v = d.normalize().multiplyScalar(this.speed);
     this.zombie.position.set(this.zombie.position.x + v.x,this.zombie.position.y + v.y)
     }
     randomSpawnPoint() {

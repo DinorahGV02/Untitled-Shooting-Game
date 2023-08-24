@@ -14,12 +14,51 @@ const app = new PIXI.Application({
 });
 
 let player = new Player({app});
-let zSpawner = new Spawner({ create: ()=> new Zombie({app,player})});
+let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
 
+let gameStartScene = createScene("Clic to Start");
 
+app.gameStarted = false;
 
 app.ticker.add((delta) => {
+  if (app.gameStarted === false) return;
   player.update();
   zSpawner.spawns.forEach((zombie) => zombie.update());
+  bulletHitTest({
+    bullets:player.shooting.bullets, 
+    zombies:zSpawner.spawns, 
+    bulletRadius:8,
+    zombieRadius:16});
 });
 
+function bulletHitTest({bullets,zombies,bulletRadius, zombieRadius}){
+  bullets.forEach(bullet => {
+    zombies.forEach((zombie,index)=>{
+      let dx = zombie.position.x - bullet.position.x;
+      let dy = zombie.position.y - bullet.position.y;
+      let distance = Math.sqrt(dx*dx + dy*dy);
+      if (distance < bulletRadius + zombieRadius){
+        zombies.splice(index,1)
+        zombie.kill();
+      }
+    })
+  })
+}
+
+function createScene(sceneText) {
+  const sceneContainer = new PIXI.Container();
+  const text = new PIXI.Text(sceneText);
+  text.x = app.screen.with / 2;
+  text.y = 0;
+  text.anchor.set(0.5,0);
+  sceneContainer.zIndex = 1;
+  sceneContainer.addChild(text);
+  app.stage.addChild(sceneContainer);
+  return sceneContainer;
+}
+
+function startGame(){
+  app.gameStarted = true;
+}
+
+document.addEventListener("click", startGame);

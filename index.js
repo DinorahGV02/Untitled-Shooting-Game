@@ -15,7 +15,9 @@ const app = new PIXI.Application({
   backgroundColor: 0x5c812f,
 });
 
-let player = new Player({app});
+async function initGame(){
+  await loadAssets();
+  let player = new Player({app});
 let controller = new Controller({app, player})
 let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
 
@@ -40,6 +42,15 @@ app.ticker.add((delta) => {
 
     console.log(player.position.x + " " + player.position.y)
 });
+
+  try{
+    await loadAssets();
+
+  }catch (error){
+    console.log(error.message);
+    console.log("Load failed");
+  }
+}
 
 function bulletHitTest({bullets,zombies,bulletRadius, zombieRadius}){
   bullets.forEach(bullet => {
@@ -71,4 +82,12 @@ function startGame(){
   app.gameStarted = true;
 }
 
+async function loadAssets(){
+  return new Promise ((resolve, reject)=> {
+    PIXI.Loader.shared.add("assets/Frames/idle/atlas.json");
+    PIXI.Loader.shared.onComplete.add(resolve);
+    PIXI.Loader.shared.onError.add(reject);
+    PIXI.Loader.load();
+  })
+}
 document.addEventListener("click", startGame);

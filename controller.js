@@ -63,10 +63,5 @@ export default class Controller {
 
         this.player.position.x = Math.max(padding, Math.min(canvasX - padding, this.player.position.x))
         this.player.position.y = Math.max(padding, Math.min(canvasY - padding, this.player.position.y))
-
-        
-
-        console.log(this.player.position.x + ' ' + this.player.position.y)
-        console.log('\n' + canvasX + ' ' + canvasY)
     }
 }

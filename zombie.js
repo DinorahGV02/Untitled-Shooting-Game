@@ -15,6 +15,7 @@ export default class Zombie {
     this.zombie.drawCircle(0,0, Radius);
     this.zombie.endFill();
     app.stage.addChild(this.zombie);
+    this.attacking = false;
     }
 
     attackPlayer(){
@@ -24,6 +25,11 @@ export default class Zombie {
 
     }
 
+    attackStop(){
+      this.attacking = false;
+      clearInterval(this.interval);
+    }
+
     update(delta){ 
     let e = new Victor(this.zombie.position.x, this.zombie.position.y);
     let s = new Victor(this.player.position.x, this.player.position.y);
@@ -31,10 +37,14 @@ export default class Zombie {
     if (e.distance(s) < this.player.width / 2){
       this.attackPlayer();
       return;
+    }else{
+      this.attackStop();
     }
     let d = s.subtract(e);
     let v = d.normalize().multiplyScalar(this.speed * delta );
     this.zombie.position.set(this.zombie.position.x + v.x,this.zombie.position.y + v.y)
+
+    console.log(e.distance(s))
     }
 
     kill(){

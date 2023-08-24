@@ -15,38 +15,39 @@ const app = new PIXI.Application({
   backgroundColor: 0x5c812f,
 });
 
+initGame();
 async function initGame(){
-  await loadAssets();
-  let player = new Player({app});
-let controller = new Controller({app, player})
-let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
-
-let gameStartScene = createScene("Click to Start");
-let gameOverScene = createScene("Game Over");
-
-app.gameStarted = false;
-
-app.ticker.add((delta) => {
-  gameOverScene.visible = player.dead;
-  gameStartScene.visible = !app.gameStarted;
-  if (app.gameStarted === false) return;
-  player.update(delta);
-  controller.update(delta);
-  zSpawner.spawns.forEach((zombie) => zombie.update(delta));
-
-  bulletHitTest({
-    bullets:player.shooting.bullets, 
-    zombies:zSpawner.spawns, 
-    bulletRadius:8,
-    zombieRadius:16});
-
-    console.log(player.position.x + " " + player.position.y)
-});
-
   try{
+    console.log("loading...");
     await loadAssets();
+    console.log("Loaded");
+    let player = new Player({app});
+    let controller = new Controller({app, player})
+    let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
 
-  }catch (error){
+    let gameStartScene = createScene("Click to Start");
+    let gameOverScene = createScene("Game Over");
+
+    app.gameStarted = false;
+
+    app.ticker.add((delta) => {
+      gameOverScene.visible = player.dead;
+      gameStartScene.visible = !app.gameStarted;
+      if (app.gameStarted === false) return;
+      player.update(delta);
+      controller.update(delta);
+      zSpawner.spawns.forEach((zombie) => zombie.update(delta));
+
+      bulletHitTest({
+        bullets:player.shooting.bullets, 
+        zombies:zSpawner.spawns, 
+        bulletRadius:8,
+        zombieRadius:16});
+
+        console.log(player.position.x + " " + player.position.y)
+    });
+
+  } catch (error){
     console.log(error.message);
     console.log("Load failed");
   }
@@ -85,9 +86,13 @@ function startGame(){
 async function loadAssets(){
   return new Promise ((resolve, reject)=> {
     PIXI.Loader.shared.add("assets/Frames/idle/atlas.json");
+    PIXI.Loader.shared.add("assets/Frames/run/atlas.json");
+    PIXI.Loader.shared.add("assets/Frames/shoot/atlas.json");
+    PIXI.Loader.shared.add("assets/Frames/death/atlas.json");
+    PIXI.Loader.shared.add("assets/Frames/aim/atlas.json");
     PIXI.Loader.shared.onComplete.add(resolve);
     PIXI.Loader.shared.onError.add(reject);
-    PIXI.Loader.load();
+    PIXI.Loader.shared.load();
   })
 }
 document.addEventListener("click", startGame);

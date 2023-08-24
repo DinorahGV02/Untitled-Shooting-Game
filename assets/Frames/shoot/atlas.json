@@ -1,0 +1,111 @@
+{
+  "frames": {
+    "Ellie frame_shoot_1": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 175,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 45,
+        "w": 175,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Ellie frame_shoot_2": {
+      "frame": {
+        "x": 0,
+        "y": 175,
+        "w": 150,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 50,
+        "y": 45,
+        "w": 150,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Ellie frame_shoot_3": {
+      "frame": {
+        "x": 0,
+        "y": 350,
+        "w": 145,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 60,
+        "y": 45,
+        "w": 145,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "Ellie frame_shoot_0": {
+      "frame": {
+        "x": 0,
+        "y": 525,
+        "w": 135,
+        "h": 175
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 70,
+        "y": 45,
+        "w": 135,
+        "h": 175
+      },
+      "sourceSize": {
+        "w": 240,
+        "h": 240
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "https://ourcade.co",
+    "version": "1.0.0",
+    "image": "atlas.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 175,
+      "h": 700
+    },
+    "scale": 1
+  }
+}

@@ -7,29 +7,29 @@ export default class Controller {
         this.player = player;
         this.isPaused = false;
 
-        // Initialize keysPressed as an empty object
+        
         this.keysPressed = {};
 
-        this.setupInputListeners(); // Call a separate method to set up input listeners
+        this.setupInputListeners(); 
     }
 
     setupInputListeners() {
         window.addEventListener("keydown", (e) => {
             if (e.code === 'KeyW' || e.code === 'KeyS' || e.code === 'KeyA' || e.code === 'KeyD') {
-                this.isPaused = false; // Resume updates on key press
-                this.keysPressed[e.code] = true; // Set the corresponding key as pressed
+                this.isPaused = false; 
+                this.keysPressed[e.code] = true; 
             }
         });
 
         window.addEventListener("keyup", (e) => {
             this.isPaused = true;
-            this.keysPressed[e.code] = false; // Set the corresponding key as released
+            this.keysPressed[e.code] = false; 
         });
     }
 
     update(delta) {
         if (this.isPaused) {
-            return; // Do not update if paused
+            return; 
         }
 
         const up = new Victor(0, -1);
@@ -38,7 +38,7 @@ export default class Controller {
         const right = new Victor(1, 0);
         const speed = 2;
 
-        // Calculate new position based on keys pressed
+        
         let newPosition = new Victor(this.player.position.x, this.player.position.y);
 
         if (this.keysPressed['KeyW']) {
@@ -54,7 +54,7 @@ export default class Controller {
             newPosition.add(right.clone().multiplyScalar(speed * delta));
         }
 
-        // Update player position
+        
         this.player.position.set(newPosition.x, newPosition.y);
     }
 }

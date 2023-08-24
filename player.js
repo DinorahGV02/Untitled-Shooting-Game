@@ -1,8 +1,15 @@
 import * as PIXI from "pixi.js";
 import Shooting from "./shooting";
+import EllieSpriteSheet from "./Ellie spritesheet.png";
 
 export default class Player {
     constructor({ app }){
+        
+        //loading sprites
+    this.app.loader.add("ellieSpriteSheet", EllieSpriteSheet);
+    this.app.loader.load(this.setupPlayer.bind(this));
+
+
     this.app = app;
     const playerWidth = 32;
     this.player = new PIXI.Sprite(PIXI.Texture.WHITE);

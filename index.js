@@ -2,8 +2,10 @@ import * as PIXI from "pixi.js";
 import Player from "./player.js";
 import Zombie from "./zombie.js";
 import Spawner from "./spawner.js";
+import Controller from "./controller.js";
 //import Matter from "matter-js";
 
+const window = document.defaultView
 const canvasSize = 512;
 const canvas = document.getElementById("mycanvas");
 const app = new PIXI.Application({
@@ -14,6 +16,7 @@ const app = new PIXI.Application({
 });
 
 let player = new Player({app});
+let controller = new Controller({app, player})
 let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
 
 let gameStartScene = createScene("Click to Start");
@@ -26,12 +29,16 @@ app.ticker.add((delta) => {
   gameStartScene.visible = !app.gameStarted;
   if (app.gameStarted === false) return;
   player.update(delta);
+  controller.update(delta);
   zSpawner.spawns.forEach((zombie) => zombie.update(delta));
+
   bulletHitTest({
     bullets:player.shooting.bullets, 
     zombies:zSpawner.spawns, 
     bulletRadius:8,
     zombieRadius:16});
+
+    console.log(player.position.x + " " + player.position.y)
 });
 
 function bulletHitTest({bullets,zombies,bulletRadius, zombieRadius}){
@@ -40,7 +47,7 @@ function bulletHitTest({bullets,zombies,bulletRadius, zombieRadius}){
       let dx = zombie.position.x - bullet.position.x;
       let dy = zombie.position.y - bullet.position.y;
       let distance = Math.sqrt(dx*dx + dy*dy);
-      if (distance < bulletRadius + zombieRadius){
+      if (distance < bulletRadius + zombieRadius - 1){
         zombies.splice(index,1)
         zombie.kill();
       }

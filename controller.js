@@ -7,30 +7,30 @@ export default class Controller {
         this.player = player;
         this.isPaused = false;
 
-        // Initialize keysPressed as an empty object
+        
         this.keysPressed = {};
 
-        this.setupInputListeners(); // Call a separate method to set up input listeners
+        this.setupInputListeners(); 
         
     }
 
     setupInputListeners() {
         window.addEventListener("keydown", (e) => {
             if (e.code === 'KeyW' || e.code === 'KeyS' || e.code === 'KeyA' || e.code === 'KeyD') {
-                this.isPaused = false; // Resume updates on key press
-                this.keysPressed[e.code] = true; // Set the corresponding key as pressed
+                this.isPaused = false; 
+                this.keysPressed[e.code] = true; 
             }
         });
 
         window.addEventListener("keyup", (e) => {
             this.isPaused = true;
-            this.keysPressed[e.code] = false; // Set the corresponding key as released
+            this.keysPressed[e.code] = false; 
         });
     }
 
     update(delta) {
         if (this.isPaused) {
-            return; // Do not update if paused
+            return; 
         }
 
         const up = new Victor(0, -1);
@@ -40,7 +40,7 @@ export default class Controller {
         const speed = 2;
         //this.run = false;
 
-        // Calculate new position based on keys pressed
+        
         let newPosition = new Victor(this.player.position.x, this.player.position.y);
         //animation
         // let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet;
@@ -48,7 +48,7 @@ export default class Controller {
 
         if (this.keysPressed['KeyW']) {
             newPosition.add(up.clone().multiplyScalar(speed * delta));
-            //this.run = true
+            
         }
         if (this.keysPressed['KeyS']) {
             newPosition.add(down.clone().multiplyScalar(speed * delta));

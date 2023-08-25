@@ -914,8 +914,14 @@
     }
   },
   "animations": {
-    "idle": ["Ellie frame_idle_0","Ellie frame_idle_1","Ellie frame_idle_2","Ellie frame_idle_3"]
-    
+    "idle": ["Ellie frame_idle_0","Ellie frame_idle_1","Ellie frame_idle_2","Ellie frame_idle_3"],
+    "death":["Ellie frame_death_0","Ellie frame_death_1","Ellie frame_death_2","Ellie frame_death_3","Ellie frame_death_4"],
+    "shoot":["Ellie frame_aim_0","Ellie frame_aim_1","Ellie frame_aim_2","Ellie frame_aim_3","Ellie frame_aim_4",
+    "Ellie frame_aim_5","Ellie frame_aim_6","Ellie frame_aim_7","Ellie frame_shoot_0","Ellie frame_shoot_1","Ellie frame_shoot_2","Ellie frame_shoot_3"],
+    "run":["Ellie frame_run_00","Ellie frame_run_01","Ellie frame_run_02",
+    "Ellie frame_run_03","Ellie frame_run_04","Ellie frame_run_05","Ellie frame_run_06",
+    "Ellie frame_run_07","Ellie frame_run_08","Ellie frame_run_09","Ellie frame_run_10",
+    "Ellie frame_run_11","Ellie frame_run_12","Ellie frame_run_13"]
   },
   "meta": {
     "app": "https://ourcade.co",

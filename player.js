@@ -57,7 +57,10 @@ export default class Player {
     }
   
     update(delta) {
-        if(this.dead) return;
+        if(this.dead){
+            this.player = new PIXI.AnimatedSprite(sheet.animations["death"]);
+            return;
+        } 
         
         const mouse = this.app.renderer.plugins.interaction.mouse;
         const cursorPosition = mouse.global;

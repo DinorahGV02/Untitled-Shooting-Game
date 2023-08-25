@@ -9,6 +9,7 @@ export default class Shooting{
         this.bullets = [];
         this.bulletRadius = 8;
         this.maxBullets = 100;
+        
     }
 
     fire(){
@@ -47,7 +48,10 @@ export default class Shooting{
     }
 
     set shoot(shooting){
+        let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet;
         if(shooting) {
+            
+            this.player = new PIXI.AnimatedSprite(sheet.animations["shoot"]);
             this.fire();
             this.interval = setInterval(()=> this.fire(), 500);
         } else {

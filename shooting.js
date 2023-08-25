@@ -8,7 +8,7 @@ export default class Shooting{
         this.bulletSpeed = 4;
         this.bullets = [];
         this.bulletRadius = 8;
-        this.maxBullets = 3;
+        this.maxBullets = 100;
     }
 
     fire(){
@@ -26,7 +26,7 @@ export default class Shooting{
 
         const bullet = new PIXI.Graphics();
         bullet.position.set(this.player.position.x, this.player.position.y);
-        bullet.beginFill(0x0000ff,1);
+        bullet.beginFill(0xffffff,1);
         bullet.drawCircle(0,0, this.bulletRadius);
         bullet.endFill();
         let angle = this.player.player.rotation - Math.PI / 2;

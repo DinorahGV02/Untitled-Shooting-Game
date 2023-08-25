@@ -5,7 +5,6 @@ import Spawner from "./spawner.js";
 import Controller from "./controller.js";
 //import Matter from "matter-js";
 
-const window = document.defaultView
 const canvasSize = 512;
 const canvas = document.getElementById("mycanvas");
 const app = new PIXI.Application({
@@ -38,14 +37,12 @@ async function initGame(){
       controller.update(delta);
       zSpawner.spawns.forEach((zombie) => zombie.update(delta));
 
-      bulletHitTest({
-        bullets:player.shooting.bullets, 
-        zombies:zSpawner.spawns, 
-        bulletRadius:8,
-        zombieRadius:16});
-
-        console.log(player.position.x + " " + player.position.y)
-    });
+  bulletHitTest({
+    bullets:player.shooting.bullets, 
+    zombies:zSpawner.spawns, 
+    bulletRadius:8,
+    zombieRadius:16});
+});
 
   } catch (error){
     console.log(error.message);

@@ -30,7 +30,6 @@ export default class Player {
     this.healthBar.zIndex = 1;
     this.app.stage.sortableChildren = true;
     this.app.stage.addChild(this.healthBar);
-
     }
 
     attack(){
@@ -50,7 +49,7 @@ export default class Player {
     get width(){
         return this.player.width;
     }
-  
+
     update(delta) {
         if(this.dead) return;
         
@@ -65,6 +64,8 @@ export default class Player {
             this.shooting.shoot = mouse.buttons !== 0;
             this.lastMouseButton = mouse.buttons;
           }
+
           this.shooting.update(delta);
     }
+
 }

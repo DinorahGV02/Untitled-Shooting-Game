@@ -60,13 +60,9 @@ export default class Player {
         return this.player.width;
     }
   
-    update(delta) {
-        /** 
-        if(this.dead){
-            this.player = new PIXI.AnimatedSprite(sheet.animations["death"]);
-            return;
-        } 
-        */
+    update(delta) { 
+        if(this.dead)return;
+       
         const mouse = this.app.renderer.plugins.interaction.mouse;
         const cursorPosition = mouse.global;
         let angle = Math.atan2(

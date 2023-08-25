@@ -13,9 +13,22 @@ const app = new PIXI.Application({
   view: canvas,
   width: canvasSize,
   height: canvasSize,
-  backgroundColor: 0x5c812f,
+  transparent: true,
 });
 
+// Load the background image
+const loader = new PIXI.Loader();
+loader.add("background", "assets/background.png").load((loader, resources) => {
+  // Create a sprite using the loaded background image
+  const background = new PIXI.Sprite(resources.background.texture);
+
+  // Set the sprite's position and scale to cover the canvas
+  background.position.set(0, 0);
+  background.scale.set(canvasSize / background.width, canvasSize / background.height);
+
+  // Add the background sprite to the stage
+  app.stage.addChild(background);
+});
 initGame();
 
 async function initGame() {

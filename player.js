@@ -9,6 +9,7 @@ export default class Player {
     let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet; //Ellie Sprite sheet/Ellie spritesheet.png
     //let sheet = PIXI.Loader.shared.resources["Spritesheet/Ellie spritesheet.png"].spritesheet;
     this.player = new PIXI.AnimatedSprite(sheet.animations["idle"]);
+    this.player.height = this.player.width = 48;
     this.player.animationSpeed = 0.1;
     this.player.play();
 

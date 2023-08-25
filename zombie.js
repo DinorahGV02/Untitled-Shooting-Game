@@ -11,6 +11,7 @@ export default class Zombie {
 
     let sheet = PIXI.Loader.shared.resources["assets/ZFrames/atlas.json"].spritesheet; 
     this.zombie = new PIXI.AnimatedSprite(sheet.animations["run"]);
+    this.zombie.height = this.zombie.width = 32
     this.zombie.animationSpeed = 0.1;
     this.zombie.play();
 

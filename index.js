@@ -3,6 +3,7 @@ import Player from "./player.js";
 import Zombie from "./zombie.js";
 import Spawner from "./spawner.js";
 import Controller from "./controller.js";
+import { zombies } from "./global.js";
 //import Matter from "matter-js";
 
 const window = document.defaultView
@@ -15,31 +16,44 @@ const app = new PIXI.Application({
   backgroundColor: 0x5c812f,
 });
 
-let player = new Player({app});
-let controller = new Controller({app, player})
-let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
+initGame();
 
-let gameStartScene = createScene("Click to Start");
-let gameOverScene = createScene("Game Over");
+async function initGame() {
+  try { 
+    console.log("loading...")
+    await loadAssets();
+    console.log("loaded")
+    let player = new Player({app});
+    let controller = new Controller({app, player})
+    let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
 
-app.gameStarted = false;
+    let gameStartScene = createScene("Click to Start");
+    let gameOverScene = createScene("Game Over");
 
-app.ticker.add((delta) => {
-  gameOverScene.visible = player.dead;
-  gameStartScene.visible = !app.gameStarted;
-  if (app.gameStarted === false) return;
-  player.update(delta);
-  controller.update(delta);
-  zSpawner.spawns.forEach((zombie) => zombie.update(delta));
+    app.gameStarted = false;
 
-  bulletHitTest({
-    bullets:player.shooting.bullets, 
-    zombies:zSpawner.spawns, 
-    bulletRadius:8,
-    zombieRadius:16});
+    app.ticker.add((delta) => {
+      gameOverScene.visible = player.dead;
+      gameStartScene.visible = !app.gameStarted;
+      if (app.gameStarted === false) return;
+      player.update(delta);
+      controller.update(delta);
+      zSpawner.spawns.forEach((zombie) => zombie.update(delta));
 
-    console.log(player.position.x + " " + player.position.y)
-});
+      bulletHitTest({
+        bullets:player.shooting.bullets, 
+        zombies:zSpawner.spawns, 
+        bulletRadius:8,
+        zombieRadius:16});
+
+        console.log(player.position.x + " " + player.position.y)
+    });
+
+  } catch (error) {
+    console.log(error.message);
+    console.log("Load Failed");
+  }
+}
 
 function bulletHitTest({bullets,zombies,bulletRadius, zombieRadius}){
   bullets.forEach(bullet => {
@@ -69,6 +83,18 @@ function createScene(sceneText) {
 
 function startGame(){
   app.gameStarted = true;
+}
+
+async function loadAssets() {
+  return new Promise((resolve, reject) => {
+    zombies.forEach(z => PIXI.Loader.shared.add(`assets/${z}.json`))
+    PIXI.Loader.shared.add("assets/hero_male.json");
+    //PIXI.Loader.shared.add("Ellie/Spritesheet.png")
+    PIXI.Loader.shared.add("bullet" , "assets/bullet.png");
+    PIXI.Loader.shared.onComplete.add(resolve);
+    PIXI.Loader.shared.onError.add(reject);
+    PIXI.Loader.shared.load();
+  })
 }
 
 document.addEventListener("click", startGame);

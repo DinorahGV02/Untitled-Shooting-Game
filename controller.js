@@ -24,7 +24,8 @@ export default class Controller {
                 this.isPaused = false; 
                 this.keysPressed[e.code] = true;
                 this.player.sprite.textures = this.run.textures;
-                this.run.play();
+                this.player.sprite.animationSpeed = 0.1;
+                this.player.sprite.play();
             }
         });
 
@@ -32,7 +33,8 @@ export default class Controller {
             this.isPaused = true;
             this.keysPressed[e.code] = false;
             this.player.sprite.textures = this.idle.textures;
-            this.idle.play();
+            this.player.sprite.animationSpeed = 0.1;
+            this.player.sprite.play();
         });
     }
 

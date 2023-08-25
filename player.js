@@ -17,7 +17,6 @@ export default class Player {
     ///
 
     ///
-    this.controller = Controller;
     ///
 
     this.player = new PIXI.AnimatedSprite(sheet.animations["idle"]);
@@ -67,6 +66,10 @@ export default class Player {
     get width(){
         return this.player.width;
     }
+
+    get sprite(){
+        return this.player;
+    }
   
     update(delta) { 
         if(this.dead)return;
@@ -81,7 +84,7 @@ export default class Player {
 
           //new code block, delete if it doestn work
 
-          if (this.controller.isPaused) {
+          /* if (this.controller.isPaused) {
             this.player.gotoAndStop(0); 
         } else {
             if (this.controller.keysPressed) {
@@ -91,14 +94,11 @@ export default class Player {
                 this.player.textures = this.idle.textures; 
                 this.player.stop();
             }
-        }
+        } */
 
           //----
 
           if (mouse.buttons !== this.lastMouseButton){
-
-            this.player.textures = mouse.buttons === 0 ? this.idle.textures : this.shoot.textures;
-            this.player.play();
             this.shooting.shoot = mouse.buttons !== 0;
             this.lastMouseButton = mouse.buttons;
           }

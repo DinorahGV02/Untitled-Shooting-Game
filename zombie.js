@@ -13,7 +13,7 @@ export default class Zombie {
     this.zombie = new PIXI.AnimatedSprite(sheet.animations["run"]);
     this.zombie = new PIXI.AnimatedSprite(sheet.animations["die"]);
     this.zombie = new PIXI.AnimatedSprite(sheet.animations["attack"]);
-    this.zombie.height = this.zombie.width = 32
+    this.zombie.height = this.zombie.width = 48
     this.zombie.animationSpeed = 0.1;
     this.zombie.play();
 

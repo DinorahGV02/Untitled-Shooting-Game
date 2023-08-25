@@ -3,6 +3,7 @@ import Player from "./player.js";
 import Zombie from "./zombie.js";
 import Spawner from "./spawner.js";
 import Controller from "./controller.js";
+import Weather from "./weather.js";
 //import { zombies } from "./global.js";
 //import Matter from "matter-js";
 
@@ -35,6 +36,9 @@ async function initGame() {
     console.log("loading...")
     await loadAssets();
     console.log("loaded")
+
+    app.weather = new Weather({app});
+
     let player = new Player({app});
     let controller = new Controller({app, player})
     let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
@@ -95,6 +99,7 @@ function createScene(sceneText) {
 
 function startGame(){
   app.gameStarted = true;
+  app.weather.enableSound();
 }
 
 async function loadAssets() {
@@ -103,6 +108,7 @@ async function loadAssets() {
     PIXI.Loader.shared.add("assets/Frames/atlas.json");
     PIXI.Loader.shared.add("assets/ZFrames/atlas.json")
     PIXI.Loader.shared.add("bullet" , "assets/bullet.png");
+    PIXI.Loader.shared.add("rain" , "assets/rain.png");
     PIXI.Loader.shared.onComplete.add(resolve);
     PIXI.Loader.shared.onError.add(reject);
     PIXI.Loader.shared.load();

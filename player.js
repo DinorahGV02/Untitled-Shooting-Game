@@ -7,7 +7,7 @@ export default class Player {
     const playerWidth = 32;
 
     let sheet = PIXI.Loader.shared.resources["assets/Frames/idle"].spritesheet;
-    
+    this.player = new PIXI.AnimatedSprite(sheet.animations)
     //this.player = new PIXI.Sprite(PIXI.Texture.WHITE);
     this.player.anchor.set(0.5);
     this.player.position.set(app.screen.width / 2, app.screen.height / 2);

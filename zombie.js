@@ -43,8 +43,6 @@ export default class Zombie {
     let d = s.subtract(e);
     let v = d.normalize().multiplyScalar(this.speed * delta );
     this.zombie.position.set(this.zombie.position.x + v.x,this.zombie.position.y + v.y)
-
-    console.log(e.distance(s))
     }
 
     kill(){

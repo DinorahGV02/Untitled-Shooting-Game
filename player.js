@@ -81,17 +81,17 @@ export default class Player {
 
           //new code block, delete if it doestn work
 
-          if (this.controller.isPaused) {
-            this.player.gotoAndStop(0); 
-        } else {
-            if (this.controller.keysPressed) {
-                this.player.textures = this.run.textures; 
-                this.player.play();
-            } else {
-                this.player.textures = this.idle.textures; 
-                this.player.stop();
-            }
-        }
+        //   if (this.controller.isPaused) {
+        //     this.player.gotoAndStop(0); 
+        // } else {
+        //     if (this.controller.keysPressed) {
+        //         this.player.textures = this.run.textures; 
+        //         this.player.play();
+        //     } else {
+        //         this.player.textures = this.idle.textures; 
+        //         this.player.stop();
+        //     }
+        // }
 
           //----
 

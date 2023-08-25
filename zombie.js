@@ -8,9 +8,11 @@ export default class Zombie {
 
     const Radius = 16;
     this.speed = 1;
-
-    let sheet = PIXI.Loader.shared.resources["assets/ZFrames/atlas.json"].spritesheet; 
+    
+    let sheet = PIXI.Loader.shared.resources["assets/copzee.json"].spritesheet; //trying cop
     this.zombie = new PIXI.AnimatedSprite(sheet.animations["run"]);
+    this.die = new PIXI.AnimatedSprite(sheet.animations["die"]);
+    this.attack = new PIXI.AnimatedSprite(sheet.animations["attack"]);
     this.zombie.height = this.zombie.width = 32
     this.zombie.animationSpeed = 0.1;
     this.zombie.play();
@@ -29,6 +31,9 @@ export default class Zombie {
       if(this.attacking) return;
       this.attacking = true;
       this.interval = setInterval(() => this.player.attack(),500);
+      this.zombie.textures = this.attack.textures;
+      this.zombie.animationSpeed = 0.1;
+      this.zombie.play();
 
     }
 
@@ -53,9 +58,16 @@ export default class Zombie {
     }
 
     kill(){
-      this.app.stage.removeChild(this.zombie);
+      //this.app.stage.removeChild(this.zombie);
       clearInterval(this.interval);
       //die sprite
+      this.zombie.textures = this.die.textures;
+      this.zombie.loop = false;
+      this.zombie.OnComplete = ()=>setTimeout(()=>this.app.stage.removeChild(this.zombie),30000);
+      this.zombie.play();
+
+      clearInterval(this.interval);
+      ////
     }
     get position(){
       return this.zombie.position;

@@ -1,16 +1,23 @@
 import * as PIXI from "pixi.js";
 import Shooting from "./shooting";
+import Controller from "./controller";
 
 export default class Player {
-    constructor({ app }){
+    constructor({app}){ 
     this.app = app;
-    const playerWidth = 32;
+    const playerWidth = 32; 
 
     let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet; 
     //let sheet = PIXI.Loader.shared.resources["Spritesheet/Ellie spritesheet.png"].spritesheet;
     this.idle = new PIXI.AnimatedSprite(sheet.animations["idle"]);
     this.shoot = new PIXI.AnimatedSprite(sheet.animations["shoot"]);
 
+    ///
+    this.run = new PIXI.AnimatedSprite(sheet.animations["run"]);
+    ///
+
+    ///
+    ///
 
     this.player = new PIXI.AnimatedSprite(sheet.animations["idle"]);
     this.player.height = this.player.width = 48;
@@ -59,6 +66,10 @@ export default class Player {
     get width(){
         return this.player.width;
     }
+
+    get sprite(){
+        return this.player;
+    }
   
     update(delta) { 
         if(this.dead)return;
@@ -71,10 +82,23 @@ export default class Player {
           this.rotation = angle;
           this.player.scale.x = cursorPosition.x < this.player.position.x ? -.2 : .2;
 
-          if (mouse.buttons !== this.lastMouseButton){
+          //new code block, delete if it doestn work
 
-            this.player.textures = mouse.buttons === 0 ? this.idle.textures : this.shoot.textures;
-            this.player.play();
+          /* if (this.controller.isPaused) {
+            this.player.gotoAndStop(0); 
+        } else {
+            if (this.controller.keysPressed) {
+                this.player.textures = this.run.textures; 
+                this.player.play();
+            } else {
+                this.player.textures = this.idle.textures; 
+                this.player.stop();
+            }
+        } */
+
+          //----
+
+          if (mouse.buttons !== this.lastMouseButton){
             this.shooting.shoot = mouse.buttons !== 0;
             this.lastMouseButton = mouse.buttons;
           }

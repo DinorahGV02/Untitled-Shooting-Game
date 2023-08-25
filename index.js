@@ -3,6 +3,7 @@ import Player from "./player.js";
 import Zombie from "./zombie.js";
 import Spawner from "./spawner.js";
 import Controller from "./controller.js";
+import { zombies } from "./global.js";
 //import Matter from "matter-js";
 
 const canvasSize = 512;
@@ -15,11 +16,12 @@ const app = new PIXI.Application({
 });
 
 initGame();
-async function initGame(){
-  try{
-    console.log("loading...");
+
+async function initGame() {
+  try { 
+    console.log("loading...")
     await loadAssets();
-    console.log("Loaded");
+    console.log("loaded")
     let player = new Player({app});
     let controller = new Controller({app, player})
     let zSpawner = new Spawner({ app, create: ()=> new Zombie({app,player})});
@@ -37,16 +39,18 @@ async function initGame(){
       controller.update(delta);
       zSpawner.spawns.forEach((zombie) => zombie.update(delta));
 
-  bulletHitTest({
-    bullets:player.shooting.bullets, 
-    zombies:zSpawner.spawns, 
-    bulletRadius:8,
-    zombieRadius:16});
-});
+      bulletHitTest({
+        bullets:player.shooting.bullets, 
+        zombies:zSpawner.spawns, 
+        bulletRadius:8,
+        zombieRadius:16});
 
-  } catch (error){
+        console.log(player.position.x + " " + player.position.y)
+    });
+
+  } catch (error) {
     console.log(error.message);
-    console.log("Load failed");
+    console.log("Load Failed");
   }
 }
 
@@ -80,11 +84,12 @@ function startGame(){
   app.gameStarted = true;
 }
 
-async function loadAssets(){
-  return new Promise ((resolve, reject)=> {
-    PIXI.Loader.shared.add("assets/Frames/atlas.json");
-    PIXI.Loader.shared.add("bullet","assets/bullet.png");
-    PIXI.Loader.shared.add("assets/ZFrames/atlas.json");
+async function loadAssets() {
+  return new Promise((resolve, reject) => {
+    zombies.forEach(z => PIXI.Loader.shared.add(`assets/${z}.json`))
+    PIXI.Loader.shared.add("assets/hero_male.json");
+    //PIXI.Loader.shared.add("Ellie/Spritesheet.png")
+    PIXI.Loader.shared.add("bullet" , "assets/bullet.png");
     PIXI.Loader.shared.onComplete.add(resolve);
     PIXI.Loader.shared.onError.add(reject);
     PIXI.Loader.shared.load();

@@ -82,14 +82,9 @@ function startGame(){
 
 async function loadAssets(){
   return new Promise ((resolve, reject)=> {
-    PIXI.Loader.shared.add("assets/Frames/idle/atlas.json");
-    PIXI.Loader.shared.add("assets/Frames/run/atlas.json");
-    PIXI.Loader.shared.add("assets/Frames/shoot/atlas.json");
-    PIXI.Loader.shared.add("assets/Frames/death/atlas.json");
-    PIXI.Loader.shared.add("assets/Frames/aim/atlas.json");
+    PIXI.Loader.shared.add("assets/Frames/atlas.json");
     PIXI.Loader.shared.add("bullet","assets/bullet.png");
-    PIXI.Loader.shared.add("assets/Frames/Attack/atlas.json");
-    PIXI.Loader.shared.add("assets/Frames/ZRun/atlas.json");
+    PIXI.Loader.shared.add("assets/ZFrames/atlas.json");
     PIXI.Loader.shared.onComplete.add(resolve);
     PIXI.Loader.shared.onError.add(reject);
     PIXI.Loader.shared.load();

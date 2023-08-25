@@ -38,17 +38,17 @@ export default class Controller {
         const left = new Victor(-1, 0);
         const right = new Victor(1, 0);
         const speed = 2;
-        this.run = false;
+        //this.run = false;
 
         // Calculate new position based on keys pressed
         let newPosition = new Victor(this.player.position.x, this.player.position.y);
         //animation
-        let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet;
-        this.player = new PIXI.AnimatedSprite(sheet.animations["run"]);
+        // let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet;
+        // this.player = new PIXI.AnimatedSprite(sheet.animations["run"]);
 
         if (this.keysPressed['KeyW']) {
             newPosition.add(up.clone().multiplyScalar(speed * delta));
-            this.run = true
+            //this.run = true
         }
         if (this.keysPressed['KeyS']) {
             newPosition.add(down.clone().multiplyScalar(speed * delta));

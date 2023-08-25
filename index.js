@@ -101,7 +101,7 @@ async function loadAssets() {
   return new Promise((resolve, reject) => {
     //zombies.forEach(z => PIXI.Loader.shared.add(`assets/${z}.json`))
     PIXI.Loader.shared.add("assets/Frames/atlas.json");
-    PIXI.Loader.shared.add("assets/ZFrames/atlas.json")
+    PIXI.Loader.shared.add("assets/copzee.json") //trying zombie cop
     PIXI.Loader.shared.add("bullet" , "assets/bullet.png");
     PIXI.Loader.shared.onComplete.add(resolve);
     PIXI.Loader.shared.onError.add(reject);

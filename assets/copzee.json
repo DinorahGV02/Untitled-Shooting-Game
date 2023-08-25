@@ -90,7 +90,7 @@
 }},
 "animations": {
 	"die": ["cop_die_0.png","cop_die_1.png","cop_die_2.png","cop_die_3.png","cop_die_4.png","cop_die_5.png"],
-	"walk": ["cop_walk_0.png","cop_walk_1.png","cop_walk_2.png","cop_walk_3.png","cop_walk_4.png"],
+	"run": ["cop_walk_0.png","cop_walk_1.png","cop_walk_2.png","cop_walk_3.png","cop_walk_4.png"],
 	"attack": ["cop_walk_0.png","cop_die_0.png","cop_die_1.png"]
 },
 "meta": {

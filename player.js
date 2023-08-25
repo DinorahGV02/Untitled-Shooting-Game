@@ -5,16 +5,11 @@ export default class Player {
     constructor({ app }){
     this.app = app;
     const playerWidth = 32;
-
-    let sheet = PIXI.Loader.shared.resources["assets/hero_male.json"].spritesheet; //Ellie Sprite sheet/Ellie spritesheet.png
-    //let sheet = PIXI.Loader.shared.resources["Spritesheet/Ellie spritesheet.png"].spritesheet;
-    this.player = new PIXI.AnimatedSprite(sheet.animations["idle"]);
-    this.player.animationSpeed = 0.1;
-    this.player.play();
+    this.player = new PIXI.Sprite(PIXI.Texture.WHITE);
     this.player.anchor.set(0.5);
     this.player.position.set(app.screen.width / 2, app.screen.height / 2);
-    // this.player.width = this.player.height = playerWidth;
-    // this.player.tint = 0xea985d;
+    this.player.width = this.player.height = playerWidth;
+    this.player.tint = 0xea985d;
 
     app.stage.addChild(this.player);
     this.lastMouseButton = 0;
@@ -32,6 +27,7 @@ export default class Player {
     this.healthBar.zIndex = 1;
     this.app.stage.sortableChildren = true;
     this.app.stage.addChild(this.healthBar);
+
     }
 
     attack(){
@@ -51,7 +47,7 @@ export default class Player {
     get width(){
         return this.player.width;
     }
-
+  
     update(delta) {
         if(this.dead) return;
         
@@ -66,8 +62,6 @@ export default class Player {
             this.shooting.shoot = mouse.buttons !== 0;
             this.lastMouseButton = mouse.buttons;
           }
-
           this.shooting.update(delta);
     }
-
 }

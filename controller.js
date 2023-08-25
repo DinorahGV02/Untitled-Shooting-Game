@@ -10,7 +10,11 @@ export default class Controller {
         
         this.keysPressed = {};
 
-        this.setupInputListeners(); 
+        this.setupInputListeners();
+
+        let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet;
+        this.idle = new PIXI.AnimatedSprite(sheet.animations["idle"]);
+        this.run = new PIXI.AnimatedSprite(sheet.animations["run"]);
         
     }
 
@@ -18,13 +22,17 @@ export default class Controller {
         window.addEventListener("keydown", (e) => {
             if (e.code === 'KeyW' || e.code === 'KeyS' || e.code === 'KeyA' || e.code === 'KeyD') {
                 this.isPaused = false; 
-                this.keysPressed[e.code] = true; 
+                this.keysPressed[e.code] = true;
+                this.player.sprite.textures = this.run.textures;
+                this.run.play();
             }
         });
 
         window.addEventListener("keyup", (e) => {
             this.isPaused = true;
-            this.keysPressed[e.code] = false; 
+            this.keysPressed[e.code] = false;
+            this.player.sprite.textures = this.idle.textures;
+            this.idle.play();
         });
     }
 

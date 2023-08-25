@@ -1009,6 +1009,9 @@
       }
     }
   },
+  "animations": {
+    "run": ["run_00","run_01","run_02","run_03"]
+  },
   "meta": {
     "app": "https://ourcade.co",
     "version": "1.0.0",

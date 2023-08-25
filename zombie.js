@@ -8,12 +8,18 @@ export default class Zombie {
 
     const Radius = 16;
     this.speed = 1;
-    this.zombie = new PIXI.Graphics();
+
+    let sheet = PIXI.Loader.shared.resources["assets/ZFrames/atlas.json"].spritesheet; 
+    this.zombie = new PIXI.AnimatedSprite(sheet.animations["run"]);
+    this.zombie.animationSpeed = 0.1;
+    this.zombie.play();
+
+    //this.zombie = new PIXI.Graphics();
     let r = this.randomSpawnPoint();
     this.zombie.position.set(r.x,r.y);
-    this.zombie.beginFill(0xFF0000, 1);
-    this.zombie.drawCircle(0,0, Radius);
-    this.zombie.endFill();
+    //this.zombie.beginFill(0xFF0000, 1);
+    //this.zombie.drawCircle(0,0, Radius);
+    //this.zombie.endFill();
     app.stage.addChild(this.zombie);
     this.attacking = false;
     }

@@ -9,7 +9,6 @@ export default class Shooting{
         this.bullets = [];
         this.bulletRadius = 8;
         this.maxBullets = 100;
-        
     }
 
     fire(){
@@ -24,21 +23,13 @@ export default class Shooting{
         && Math.abs(b.position.y) < this.app.screen.height);
 
         this.bullets.forEach((b)=>this.app.stage.addChild(b));
-
             const bullet = new PIXI.Sprite(PIXI.Loader.shared.resources["bullet"].texture);
             bullet.anchor.set(0.5);
             bullet.scale.set(0.2);
-            bullet.position.set(this.player.position.x, this.player.position.y);
+            bullet.position.set(this.player.position.x , this.player.position.y);
             bullet.rotation = this.player.rotation;
-
-        /** 
-        const bullet = new PIXI.Graphics();
-        bullet.position.set(this.player.position.x, this.player.position.y);
-        bullet.beginFill(0xffffff,1);
-        bullet.drawCircle(0,0, this.bulletRadius);
-        bullet.endFill();
-        */
-        let angle = this.player.player.rotation - Math.PI / 2;
+        
+        let angle = this.player.rotation - Math.PI / 2;
         bullet.velocity = new Victor(
             Math.cos(angle),
             Math.sin(angle))
@@ -48,10 +39,7 @@ export default class Shooting{
     }
 
     set shoot(shooting){
-        let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet;
         if(shooting) {
-            
-            this.player = new PIXI.AnimatedSprite(sheet.animations["shoot"]);
             this.fire();
             this.interval = setInterval(()=> this.fire(), 500);
         } else {

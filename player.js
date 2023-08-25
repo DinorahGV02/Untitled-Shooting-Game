@@ -6,15 +6,19 @@ export default class Player {
     this.app = app;
     const playerWidth = 32;
 
-    let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet; //Ellie Sprite sheet/Ellie spritesheet.png
+    let sheet = PIXI.Loader.shared.resources["assets/Frames/atlas.json"].spritesheet; 
     //let sheet = PIXI.Loader.shared.resources["Spritesheet/Ellie spritesheet.png"].spritesheet;
+    this.idle = new PIXI.AnimatedSprite(sheet.animations["idle"]);
+    this.shoot = new PIXI.AnimatedSprite(sheet.animations["shoot"]);
+
+
     this.player = new PIXI.AnimatedSprite(sheet.animations["idle"]);
     this.player.height = this.player.width = 48;
     this.player.animationSpeed = 0.1;
     this.player.play();
 
    // this.player = new PIXI.Sprite(PIXI.Texture.WHITE);
-    this.player.anchor.set(0.5);
+    this.player.anchor.set(0.5,0.5);
     this.player.position.set(app.screen.width / 2, app.screen.height / 2);
     //this.player.width = this.player.height = playerWidth;
     //this.player.tint = 0xea985d;
@@ -57,19 +61,24 @@ export default class Player {
     }
   
     update(delta) {
+        /** 
         if(this.dead){
             this.player = new PIXI.AnimatedSprite(sheet.animations["death"]);
             return;
         } 
-        
+        */
         const mouse = this.app.renderer.plugins.interaction.mouse;
         const cursorPosition = mouse.global;
         let angle = Math.atan2(
           cursorPosition.y - this.player.position.y, 
           cursorPosition.x - this.player.position.x) + Math.PI / 2;
-          this.player.rotation = angle;
+          this.rotation = angle;
+          this.player.scale.x = cursorPosition.x < this.player.position.x ? -.2 : .2;
 
           if (mouse.buttons !== this.lastMouseButton){
+
+            this.player.textures = mouse.buttons === 0 ? this.idle.textures : this.shoot.textures;
+            this.player.play();
             this.shooting.shoot = mouse.buttons !== 0;
             this.lastMouseButton = mouse.buttons;
           }

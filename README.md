@@ -2,3 +2,6 @@
 Game Project CTP Hackathon
 
 Thanks to [Morgan Page](https://www.youtube.com/watch?v=wEnTcuhRByo&list=PLFH4sUznv7T9aWJrqd7MhFZNBi9IwZOxg) and his tutorials, we were able to learn and code the base for our game. Then, we added extra funtionality to Untitled Shooting Game.
+
+Shooter Sprites by [Ruuskii](https://ruuskii.itch.io/)
+Zoombie Sprites by [Mikael](https://opengameart.org/users/soluna-software)

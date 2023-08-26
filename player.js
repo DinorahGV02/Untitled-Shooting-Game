@@ -82,21 +82,7 @@ export default class Player {
           this.rotation = angle;
           this.player.scale.x = cursorPosition.x < this.player.position.x ? -.2 : .2;
 
-          //new code block, delete if it doestn work
-
-          /* if (this.controller.isPaused) {
-            this.player.gotoAndStop(0); 
-        } else {
-            if (this.controller.keysPressed) {
-                this.player.textures = this.run.textures; 
-                this.player.play();
-            } else {
-                this.player.textures = this.idle.textures; 
-                this.player.stop();
-            }
-        } */
-
-          //----
+      
 
           if (mouse.buttons !== this.lastMouseButton){
             this.shooting.shoot = mouse.buttons !== 0;

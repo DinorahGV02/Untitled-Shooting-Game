@@ -90,7 +90,7 @@
 }},
 "animations": {
 	"die": ["nurse_die_0.png","nurse_die_1.png","nurse_die_2.png","nurse_die_3.png","nurse_die_4.png","nurse_die_5.png"],
-	"walk": ["nurse_walk_0.png","nurse_walk_1.png","nurse_walk_2.png","nurse_walk_3.png","nurse_walk_4.png"],
+	"run": ["nurse_walk_0.png","nurse_walk_1.png","nurse_walk_2.png","nurse_walk_3.png","nurse_walk_4.png"],
 	"attack": ["nurse_walk_0.png","nurse_die_0.png","nurse_die_1.png"]
 },
 "meta": {

@@ -82,7 +82,7 @@
 }},
 "animations": {
 	"die": ["female_die_0.png","female_die_1.png","female_die_2.png","female_die_3.png","female_die_4.png"],
-	"walk": ["female_walk_0.png","female_walk_1.png","female_walk_2.png","female_walk_3.png","female_walk_4.png"],
+	"run": ["female_walk_0.png","female_walk_1.png","female_walk_2.png","female_walk_3.png","female_walk_4.png"],
 	"attack": ["female_walk_0.png","female_die_0.png","female_die_1.png"]
 },
 "meta": {

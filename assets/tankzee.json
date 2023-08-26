@@ -98,7 +98,7 @@
 }},
 "animations": {
 	"die": ["tank_die_0.png","tank_die_1.png","tank_die_2.png","tank_die_3.png","tank_die_4.png","tank_die_5.png","tank_die_6.png"],
-	"walk": ["tank_walk_0.png","tank_walk_1.png","tank_walk_2.png","tank_walk_3.png","tank_walk_4.png"],
+	"run": ["tank_walk_0.png","tank_walk_1.png","tank_walk_2.png","tank_walk_3.png","tank_walk_4.png"],
 	"attack": ["tank_walk_0.png","tank_die_0.png","tank_die_1.png"]
 },
 "meta": {

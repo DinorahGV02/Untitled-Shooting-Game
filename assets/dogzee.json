@@ -98,7 +98,7 @@
 }},
 "animations": {
 	"die": ["dog_die_0.png","dog_die_1.png","dog_die_2.png","dog_die_3.png","dog_die_4.png","dog_die_5.png","dog_die_6.png"],
-	"walk": ["dog_walk_0.png","dog_walk_1.png","dog_walk_2.png","dog_walk_3.png","dog_walk_4.png"],
+	"run": ["dog_walk_0.png","dog_walk_1.png","dog_walk_2.png","dog_walk_3.png","dog_walk_4.png"],
 	"attack": ["dog_die_0.png","dog_die_1.png"]
 },
 "meta": {

@@ -4,6 +4,7 @@ import Zombie from "./zombie.js";
 import Spawner from "./spawner.js";
 import Controller from "./controller.js";
 import Weather from "./weather.js";
+import { zombies } from "./global.js";
 //import { zombies } from "./global.js";
 //import Matter from "matter-js";
 
@@ -105,8 +106,8 @@ function startGame(){
 async function loadAssets() {
   return new Promise((resolve, reject) => {
     //zombies.forEach(z => PIXI.Loader.shared.add(`assets/${z}.json`))
+    zombies.forEach((z)=> PIXI.Loader.shared.add(`assets/${z}.json`));
     PIXI.Loader.shared.add("assets/Frames/atlas.json");
-    PIXI.Loader.shared.add("assets/copzee.json") //trying zombie cop
     PIXI.Loader.shared.add("bullet" , "assets/bullet.png");
     PIXI.Loader.shared.add("rain" , "assets/rain.png");
     PIXI.Loader.shared.onComplete.add(resolve);

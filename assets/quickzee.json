@@ -90,7 +90,7 @@
 }},
 "animations": {
 	"die": ["quick_die_0.png","quick_die_1.png","quick_die_2.png","quick_die_3.png","quick_die_4.png","quick_die_5.png"],
-	"walk": ["quick_walk_0.png","quick_walk_1.png","quick_walk_2.png","quick_walk_3.png","quick_walk_4.png"],
+	"run": ["quick_walk_0.png","quick_walk_1.png","quick_walk_2.png","quick_walk_3.png","quick_walk_4.png"],
 	"attack": ["quick_die_0.png","quick_die_1.png"]
 },
 "meta": {

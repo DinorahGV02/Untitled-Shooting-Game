@@ -1,7 +1,7 @@
 # Untitled-Shooting-Game
 Game Project CTP Hackathon
 
-[Untitled Shooting Game](https://untitled-shooting-game.netlify.app/) (Click to play our game!) is a browser based game. Developed using Pixijs, JavaScript, HTML, CSS, and deployed using [Netlify](https://www.netlify.com)
+[Untitled Shooting Game](https://untitled-shooting-game.netlify.app/) (Click to play our game!) is a browser based game. Developed using [Pixijs](https://pixijs.com), JavaScript, HTML, CSS, and deployed using [Netlify](https://www.netlify.com)
 
 To play our game, simply click the link, and start moving around to avoid those zombies with AWSD keys! shooooot them with the power of... YOUR CLICKS!
 

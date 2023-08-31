@@ -1,30 +1,39 @@
 import * as PIXI from "pixi.js";
 import Victor from "victor";
+import { zombies } from "./global";
 
 export default class Zombie {
     constructor({app, player}){
     this.app = app;
     this.player = player;
 
-    const Radius = 16;
+    //const Radius = 16;
     this.speed = 1;
     
-    let sheet = PIXI.Loader.shared.resources["assets/copzee.json"].spritesheet; //trying cop
-    this.zombie = new PIXI.AnimatedSprite(sheet.animations["run"]);
-    this.die = new PIXI.AnimatedSprite(sheet.animations["die"]);
-    this.attack = new PIXI.AnimatedSprite(sheet.animations["attack"]);
-    this.zombie.height = this.zombie.width = 32
-    this.zombie.animationSpeed = 0.1;
-    this.zombie.play();
+    
+    // this.zombie.height = this.zombie.width = 32
+    // this.zombie.animationSpeed = 0.1;
+    
 
     //this.zombie = new PIXI.Graphics();
     let r = this.randomSpawnPoint();
+    let zombieName = zombies[Math.floor(Math.random()*zombies.length)];
+    this.speed = zombieName === "quickzee" ? 1 : 0.25;
+    let sheet = PIXI.Loader.shared.resources[`assets/${zombieName}.json`].spritesheet; //trying cop
+    this.zombie = new PIXI.AnimatedSprite(sheet.animations["run"]);
+    this.die = new PIXI.AnimatedSprite(sheet.animations["die"]);
+    this.attack = new PIXI.AnimatedSprite(sheet.animations["attack"]);
+    this.zombie.animationSpeed = zombieName ==="quickzee" ? 0.2 : 0.1;
+
+    this.zombie.play();
+    this.zombie.anchor.set(0.5);
     this.zombie.position.set(r.x,r.y);
+    
     //this.zombie.beginFill(0xFF0000, 1);
     //this.zombie.drawCircle(0,0, Radius);
     //this.zombie.endFill();
     app.stage.addChild(this.zombie);
-    this.attacking = false;
+    //this.attacking = false;
     }
 
     attackPlayer(){
@@ -54,6 +63,7 @@ export default class Zombie {
     }
     let d = s.subtract(e);
     let v = d.normalize().multiplyScalar(this.speed * delta );
+    this.zombie.scale.x = v.x < 0 ? 1 : -1;
     this.zombie.position.set(this.zombie.position.x + v.x,this.zombie.position.y + v.y)
     }
 
